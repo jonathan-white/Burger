@@ -1,34 +1,42 @@
-
 <img src="/assets/img/burger.png">
 <h1 class="app-title text-center">Eat-Da-Burger!</h1>
 
 <div class="row d-flex justify-content-center">
-	<ul>
-	{{#each burgers}}
-		{{#notDevoured devoured}}
-		<li class="availBurger">
-			{{id}}. {{burger_name}}
-			<button data-burgerid="{{id}}" class="eatBurger">Devour it!</button>
-		</li>
-		{{/notDevoured}}
-	{{/each}}
-	</ul>
-	<ul>
-	{{#each burgers}}
-		{{#isDevoured devoured}}
-		<li>
-			<button class="eatenBurger" disabled="disabled">{{id}}. {{burger_name}}</button>
-		</li>
-		{{/isDevoured}}
-	{{/each}}
-	</ul>
+	<div class="burgers-avail">
+		<h2>Available Burgers:</h2>
+		{{!-- <ul> --}}
+		{{#each burgers}}
+			{{!-- Use Helpers notDevoured and isDevoured to split the burgers array --}}
+			{{#notDevoured devoured}}
+			<div>
+				<span class="availBurger">{{id}}. {{burger_name}}</span>
+				<button class="eatBurger" data-burgerid="{{id}}">Devour it!</button>
+			</div>
+			{{/notDevoured}}
+		{{/each}}
+		{{!-- </ul> --}}
+	</div>
+	<div class="burgers-devoured">
+		<h2>Devoured Burgers:</h2>
+		<ul>
+		{{#each burgers}}
+			{{#isDevoured devoured}}
+			<li>
+				<button class="devouredBurger" disabled="disabled">{{id}}. {{burger_name}}</button>
+			</li>
+			{{/isDevoured}}
+		{{/each}}
+		</ul>
+	</div>
 </div>
 
-<form action="/index" method="POST" class="add-burger d-flex justify-content-center">
-  <textarea id="burger" type="text" name="burger" class="w-50"></textarea><br/>
-  <button type="submit" class="btn btn-primary w-25">Submit</button>
-</form>
-<p class="text-center">Enter a burger you want to eat. Click the "Submit" button.</p>
+<div align="center">
+	<form action="/index" method="POST" class="add-burger">
+	  <textarea id="burgerName" type="text" name="burger"></textarea><br/>
+	  <button type="submit" class="btn btn-primary">Submit</button>
+	</form>
+	<p class="text-center">Enter a burger you want to eat. Click the "Submit" button.</p>
+</div>
 
 <script type="text/javascript">
 
@@ -50,7 +58,7 @@
 		event.preventDefault();
 
 		var newBurger = {
-			burger_name: $("#burger").val().trim(),
+			burger_name: $("#burgerName").val().trim(),
 			devoured: false
 		}
 		

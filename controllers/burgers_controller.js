@@ -8,21 +8,13 @@ router.get("/", function(req, res) {
 });
 
 // Get/Read/display a list of all burgers
-// Handlebars index file will split the array between devoured and undevoured burgers
+// Handlebars index file will split the array between devoured and undevoured burgers with helpers
 router.get("/index", function(req, res) {
 	burger.viewAll(function(err,data){
 		if(err){
 			return res.status(500).end();
 		}
-		res.render("index", { 
-			// undevouredBurgers: data.filter(function(value){
-			// 	return !value.devoured;
-			// }), 
-			// devouredBurgers: data.filter(function(value){
-			// 	return value.devoured;
-			// }),
-			burgers: data 
-		});
+		res.render("index", {burgers: data});
 	});
 });
 
@@ -44,15 +36,15 @@ router.post("/index", function(req, res) {
 
 // Put/Update/Eat a single burger
 router.put("/index/:id", function(req, res) {
-	burger.eatBurger([{devoured: true}, {id: req.params.id}], function(err, result){
+	burger.eatBurger(req.params.id, function(err, result){
 		if (err) {
-			console.log('Error occurred while updating burger:' + req.params.id);
+			console.log('Error occurred while devouring burger:' + req.params.id);
 			return res.status(500).end();
 		} else if (result.changedRows === 0){
-			console.log('Nothing has been updated: ' + req.params.id);
+			console.log('You were not able to devour burger: ' + req.params.id);
 			return res.status(404).end();
 		}
-		console.log('Successfully updated burger:' + req.params.id);
+		console.log('Successfully devoured burger:' + req.params.id);
 		res.redirect(200, "/index");
 	})
 });

@@ -11,7 +11,9 @@ app.use(bodyParser.json());
 
 app.use(express.static('public'));
 
-// Setup Handlebars
+// Setup Handlebars with custom helpers
+// notDevoured returns true if the arg (devoured boolean) is false
+// isDevoured returns true if the arg (devoured boolean) is true
 app.engine("handlebars", exphbs({ 
 	defaultLayout: "main",
 	helpers: {
@@ -34,8 +36,8 @@ var PORT = process.env.PORT || 8060;
 
 // Route Controller
 // =============================================================
-var controller = require("./controllers/burgers_controller");
-app.use(controller);
+var routes = require("./controllers/burgers_controller");
+app.use(routes);
 
 // Start our server so that it can begin listening to client requests.
 app.listen(PORT, function() {

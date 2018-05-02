@@ -20,11 +20,19 @@ img {
 .availBurger {
 	padding: 10px;
 	background-color: #eee;
-	margin: 10px;
+	width: 300px;
 }
 
-.eatenBurger {
+.eatBurger {
+	margin-left: 20px;
+}
+
+.devouredBurger {
 	min-width: 300px;
 	text-align: left;
 	/*background-color: #eee;*/
+}
+
+.burgers-avail {
+	margin-right: 30px;
 }

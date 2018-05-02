@@ -1,5 +1,6 @@
 var conn = require("./connection");
 
+// Setup ORM to Read, Create, and Update the database
 var orm = {
 	selectAll: function(db_table, cb){
 		conn.query('SELECT * FROM ' + db_table + ';', cb);
