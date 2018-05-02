@@ -17,10 +17,15 @@ img {
 	font-size: 30px;
 }
 
+span.availBurger {
+	display: inline-block;
+}
+
 .availBurger {
 	padding: 10px;
 	background-color: #eee;
 	width: 300px;
+	margin: 10px;
 }
 
 .eatBurger {
