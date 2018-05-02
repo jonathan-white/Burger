@@ -1,5 +1,5 @@
 {
-  "name": "burger",
+  "name": "Burgers",
   "version": "1.0.0",
   "description": "Eat-Da-Burger!",
   "main": "server.js",
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/jonathan-white/Burger#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
     "mysql": "^2.15.0"
