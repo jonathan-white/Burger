@@ -27,43 +27,9 @@
 </div>
 
 <div align="center">
-	<form action="/index" method="POST" class="add-burger">
+	<form action="/api/new" method="POST" class="add-burger">
 	  <textarea id="burgerName" type="text" name="burger"></textarea><br/>
 	  <button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 	<p class="text-center">Enter a burger you want to eat. Click the "Submit" button.</p>
 </div>
-
-<script type="text/javascript">
-
-	// Handle click event when a burger has been devoured
-	$(".eatBurger").on('click', function(event) {
-		event.preventDefault();
-
-		var id = $(this).data("burgerid");
-
-		$.ajax("/index/" + id, {
-			type: "PUT"
-		}).then(function() {
-			location.reload();
-		});
-	});
-
-	// Handle form submit event when a burger has been created
-	$(".add-burger").on('submit', function(event) {
-		event.preventDefault();
-
-		var newBurger = {
-			burger_name: $("#burgerName").val().trim(),
-			devoured: false
-		}
-		
-		$.ajax("/index", {
-			type: "POST",
-			data: newBurger
-		}).then(function() {
-			location.reload();
-		});
-	});
-
-</script>

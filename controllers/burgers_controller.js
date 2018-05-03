@@ -10,7 +10,7 @@ router.get("/", function(req, res) {
 // Get/Read/display a list of all burgers
 // Handlebars index file will split the array between devoured and undevoured burgers with helpers
 router.get("/index", function(req, res) {
-	burger.viewAll(function(err,data){
+	burger.viewAll(function(err,data) {
 		if(err){
 			return res.status(500).end();
 		}
@@ -19,8 +19,8 @@ router.get("/index", function(req, res) {
 });
 
 // Post/Create/Add a new burger
-router.post("/index", function(req, res) {
-	burger.addBurger({burger_name: req.body.burger_name, devoured: false}, function(err, result){
+router.post("/api/new", function(req, res) {
+	burger.addBurger({burger_name: req.body.burger_name, devoured: false}, function(err, result) {
 		if (err) {
 			console.log('Error occurred while adding burger:' + req.body.burger_name);
 			console.error(err);
@@ -30,13 +30,13 @@ router.post("/index", function(req, res) {
 			return res.status(404).end();
 		}
 		console.log('Successfully added burger: ' + req.body.burger_name);
-		res.redirect(200,"/index");
+		res.redirect(200, "/index");
 	});
 });
 
 // Put/Update/Eat a single burger
-router.put("/index/:id", function(req, res) {
-	burger.eatBurger(req.params.id, function(err, result){
+router.put("/api/eat/:id", function(req, res) {
+	burger.eatBurger(req.params.id, function(err, result) {
 		if (err) {
 			console.log('Error occurred while devouring burger:' + req.params.id);
 			return res.status(500).end();
@@ -46,7 +46,7 @@ router.put("/index/:id", function(req, res) {
 		}
 		console.log('Successfully devoured burger:' + req.params.id);
 		res.redirect(200, "/index");
-	})
+	});
 });
 
 module.exports = router;
