@@ -1,6 +1,6 @@
 {
   "name": "Burgers",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Eat-Da-Burger!",
   "main": "server.js",
   "scripts": {
